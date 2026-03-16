@@ -469,9 +469,6 @@ const handleResetCd = () => {
     pomodoroDisplay.textContent = "—";
     progressBar("pomodoro-progress", 0, cdStartTime);
     deleteCurrentSession();
-    
-
-
 }
 
 
@@ -552,8 +549,6 @@ pomodoroAlertBtn.addEventListener("click", () => {
         handleResetCd();
         handleStartCd(pomodoroStartBtn)
     }
-
-
 })
 
 //-------------------------------------------------------------------------

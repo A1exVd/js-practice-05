@@ -365,7 +365,7 @@ let pomodoroCount = 0; // увеличивает при истечении ра�
 let period; // WORK или BREAK
 let isRunning = false; // если счетчик запущен, то true
 let pomodoroTimeLeft = 0; // оставшееся время обратного счетчика
-let cdStartTime; 
+let cdStartTime = 0; 
 let pomodoroCountDownId;
 
 const clearHistoryBtn = document.getElementById("clear-history");
@@ -462,12 +462,14 @@ const handleResetCd = () => {
     pomodoroCountDownId = null;
 
     // устанавливаем дефолтные значения для обратного счетчика
-    cdInput.value = 10;
     isRunning = false;
     pomodoroTimeLeft = 0;
     period = null;
     pomodoroDisplay.classList.remove("error");
     pomodoroDisplay.textContent = "—";
+    progressBar("pomodoro-progress", 0, cdStartTime);
+    deleteCurrentSession();
+    
 
 
 }
@@ -594,6 +596,10 @@ function saveCurrentSession(pomodoroTimeLeft, period, isRunning, cdTotalTime) {
     }
 
     localStorage.setItem("pomodoroCurrent", JSON.stringify(session));
+}
+
+function deleteCurrentSession() {
+    localStorage.removeItem("pomodoroCurrent");
 }
 
 window.addEventListener("load", handleloadCurrentSession)

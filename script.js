@@ -361,7 +361,6 @@ const workCdInput = document.getElementById("work-seconds");
 const breakCdInput = document.getElementById("break-seconds");
 
 
-let pomodoroCount = 0; // увеличивает при истечении рабочего времени
 let period; // WORK или BREAK
 let isRunning = false; // если счетчик запущен, то true
 let pomodoroTimeLeft = 0; // оставшееся время обратного счетчика
@@ -428,7 +427,7 @@ const handleStartCd = (btn) => {
         updatePomodoroDisplay(period);
         pomodoroTimeLeft--;
         
-        saveCurrentSession(pomodoroTimeLeft, period, isRunning, cdInputValue, pomodoroCount);
+        saveCurrentSession(pomodoroTimeLeft, period, isRunning, cdInputValue);
 
         progressBar("pomodoro-progress", pomodoroTimeLeft, cdInputValue);
 
@@ -439,7 +438,6 @@ const handleStartCd = (btn) => {
             if (period === "WORK") {
                 showAlert("⏰ Время на перерыв!");
                 saveSessionHistory(cdInputValue);
-                pomodoroCount++;
             } else {
                 showAlert("⏰ Хватит отдыхать! Пора работать!");
             }
@@ -454,7 +452,7 @@ const handleStopCd = () => {
     pomodoroCountDownId = null;
     isRunning = false;
 
-    saveCurrentSession(pomodoroTimeLeft, period, isRunning, cdStartTime, pomodoroCount);
+    saveCurrentSession(pomodoroTimeLeft, period, isRunning, cdStartTime);
 }
 
 const handleResetCd = () => {
@@ -487,13 +485,14 @@ const handleShowHistory = () => {
         </li>`);
     }, "");
     historyOutput.innerHTML = historyList;
-    historyOutput.previousSibling.textContent = `Количество сессий: ${pomodoroCount}`;
+    historyOutput.previousSibling.textContent = `Количество сессий: ${history.length}`;
 }
 
 const handleDeleteHistory = () => {
     localStorage.removeItem("pomodoroHistory");
 
     historyOutput.innerHTML = '';
+    historyOutput.previousSibling.textContent = '';
 }
 
 
@@ -562,7 +561,6 @@ const handleloadCurrentSession = () => {
     pomodoroTimeLeft = session.pomodoroTimeLeft;
     period = session.period;
     let wasRunning = session.isRunning;
-    pomodoroCount = session.pomodoroCount;
     
     if (period === "WORK") {
         workCdInput.value = session.cdTotalTime;
@@ -587,7 +585,6 @@ function saveCurrentSession(pomodoroTimeLeft, period, isRunning, cdTotalTime) {
         period,
         isRunning,
         cdTotalTime,
-        pomodoroCount
     }
 
     localStorage.setItem("pomodoroCurrent", JSON.stringify(session));

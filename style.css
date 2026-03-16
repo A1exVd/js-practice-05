@@ -1,0 +1,140 @@
+:root {
+  --bg-color: #f9f9f9;
+  --bg-section-color: #fff;
+  --text-color: #222;
+}
+
+
+[data-theme="dark"] {
+  --bg-color: #0f1829;
+  --bg-section-color: #1c2a3a;
+  --text-color: white;
+}
+
+.theme-btn-container {
+  width: min-content;
+  margin-left: auto;
+}
+
+.theme-btn-container button {
+  padding: 0.7em;
+  border-radius: 100%;
+  background-color: var(--bg-section-color);
+}
+
+.theme-btn-container button:hover {
+  cursor: pointer;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+.card {
+  background: var(--bg-section-color);
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.controls, .buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.display {
+  font-family: monospace;
+  font-size: 1.5rem;
+  min-width: 120px;
+}
+
+button {
+  padding: 8px 14px;
+  border: none;
+  background-color: #3b82f6;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #2563eb;
+}
+
+input, textarea {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+textarea {
+  width: 75%;
+  resize: none;
+}
+
+.output {
+  margin-top: 10px;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.error {
+  color: red;
+}
+
+.notification {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 2rem;
+  border: 2px dashed green;
+  border-radius: 5px;
+  background: #e8f1ffff;
+  border-color: #0bfa03ff;
+}
+
+.notification-error {
+  display: block;
+  position: static;
+  color: red;
+  border: none;
+}
+
+.show {
+  display: block;
+}
+
+.persist {
+  border-color: #faac03ff;
+}
+
+
+.dialog-container {
+  display: none;
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(10px) brightness(50%);
+}
+
+.dialog {
+  width: max-content;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 5px;
+  text-align:center;
+  margin: auto;
+}
+
